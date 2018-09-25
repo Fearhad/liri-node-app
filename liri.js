@@ -1,6 +1,7 @@
 require("dotenv").config();
-// var keys = require("keys.js");
-// var spotify = new Spotify(keys.spotify);
+var Spotify = require('node-spotify-api')
+var keys = require("./keys.js");
+var spotify = new Spotify(keys.spotify);
 var request = require("request");
 var moment = require("moment");
 
@@ -14,7 +15,7 @@ switch (action) {
         break;
 
     case "spotify-this-song":
-
+        searchSpotifyAPI(value);
         break;
 
     case "movie-this":
@@ -42,10 +43,24 @@ function searchBandsAPI(bandName) {
                 console.log("City: " + objectBody[i].venue.city + ", " + objectBody[i].venue.country);
                 console.log(moment(objectBody[i].datetime).format("MM/DD/YY"));
             }
-    
-            // console.log("The rating of Remember The Titans is: " + JSON.parse(body).imdbRating);
         } else {
             console.log(error);
         }
     });
+}
+
+function searchSpotifyAPI(songName) {
+    spotify.search({ type: 'track', query: songName })
+  .then(function(response) {
+    var songData = ""
+    songData += "===================================\n" 
+    songData += "Song: " + response.tracks.items[0].name + "\n";
+    songData += "Artist: " + response.tracks.items[0].artists.map(artist => artist.name).join(", ") + "\n";
+    songData += "URL: " + response.tracks.items[0].album.external_urls.spotify + "\n";
+    songData += "Album: " + response.tracks.items[0].album.name;
+    console.log(songData)
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 }
