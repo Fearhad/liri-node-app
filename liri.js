@@ -38,7 +38,7 @@ fs.writeFile("log.txt", action + "," + value, function(err) {
       return console.log(err);
     }
   
-    // Otherwise, it will print: "movies.txt was updated!"
+    // Otherwise, it will print: "logs.txt was updated!"
     console.log("log.txt was updated!");
   
   });
