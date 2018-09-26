@@ -72,7 +72,7 @@ function searchSpotifyAPI(songName) {
     spotify.search({ type: 'track', query: songName })
   .then(function(response) {
     var songData = ""
-    songData += createLine; 
+    songData += createLine + "\n"; 
     songData += "Song: " + response.tracks.items[0].name + "\n";
     songData += "Artist: " + response.tracks.items[0].artists.map(artist => artist.name).join(", ") + "\n";
     songData += "URL: " + response.tracks.items[0].album.external_urls.spotify + "\n";
@@ -109,8 +109,8 @@ function searchOmdbAPI(movieName) {
 });
 }
 
-function searchTextFile() {
-    fs.readFile("random.txt", "utf8", function(error, data) {
+function searchTextFile(fileName) {
+    fs.readFile(fileName, "utf8", function(error, data) {
 
         // If the code experiences any errors it will log the error to the console.
         if (error) {
