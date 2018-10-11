@@ -28,7 +28,7 @@ switch (action) {
 
     default:
     console.log("USAGE: node liri.js <command> <input>\n")
-    console.log("Commands are:\n concert-this --Seach for concerts by bandname\n spotify-this-song --Display information about song title\n movie-this -- return information regarding specified movie title\n do-what-this-says -- run commands from the specified text file\n Example: node liri.js spotify-this-song Africa\n\n Remember! Put quotes around input if its more than one word!")
+    console.log("Commands are:\n concert-this --Seach for concerts by bandname\n spotify-this-song --Display information about song title\n movie-this -- return information regarding specified movie title\n do-what-it-says -- run commands from the specified text file\n Example: node liri.js spotify-this-song Africa\n\n Remember! Put quotes around input if its more than one word!")
         break;
 }
 fs.writeFile("log.txt", action + "," + value, function(err) {
